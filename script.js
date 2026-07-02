@@ -314,4 +314,297 @@ function markStepComplete() {
     const key = currentTutorial.id + '-' + currentStep;
     if (completedSteps.has(key)) {
         completedSteps.delete(key);
-        showToast('🔄
+        showToast('🔄 Step unmarked');
+    } else {
+        completedSteps.add(key);
+        showToast('🎉 Step completed!');
+        playSound('success');
+        startHeartRain(15);
+    }
+    saveProgress();
+    updateStats();
+    renderTutorialDetail();
+}
+
+// ============================================
+// BOOKMARKS
+// ============================================
+function toggleBookmark() {
+    if (!currentTutorial) return;
+    const id = currentTutorial.id;
+    toggleBookmarkById(id);
+}
+
+function toggleBookmarkById(id) {
+    if (bookmarks.has(id)) {
+        bookmarks.delete(id);
+        showToast('📑 Bookmark removed');
+    } else {
+        bookmarks.add(id);
+        showToast('📑 Bookmarked!');
+        playSound('click');
+    }
+    saveBookmarks();
+    updateBookmarkButton();
+    renderTutorials();
+}
+
+function updateBookmarkButton() {
+    const btn = document.getElementById('bookmarkBtn');
+    if (!currentTutorial) return;
+    const isBookmarked = bookmarks.has(currentTutorial.id);
+    btn.innerHTML = `<i class="${isBookmarked ? 'fas' : 'far'} fa-bookmark"></i>`;
+}
+
+function renderBookmarks() {
+    const grid = document.getElementById('bookmarksGrid');
+    const bookmarkedTutorials = getTutorials().filter(t => bookmarks.has(t.id));
+    
+    if (bookmarkedTutorials.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-bookmark"></i>
+                <h3>No Bookmarks</h3>
+                <p>Save tutorials you want to learn later</p>
+            </div>
+        `;
+        return;
+    }
+    
+    grid.innerHTML = bookmarkedTutorials.map(t => `
+        <div class="bookmark-card" onclick="openTutorial('${t.id}')">
+            <span class="bookmark-icon">${t.icon}</span>
+            <div class="bookmark-info">
+                <h4>${t.title}</h4>
+                <p>${t.description.substring(0, 50)}...</p>
+                <span class="bookmark-level">${t.level}</span>
+            </div>
+            <button class="remove-bookmark" onclick="event.stopPropagation(); toggleBookmarkById('${t.id}')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `).join('');
+}
+
+// ============================================
+// PROGRESS
+// ============================================
+function updateStats() {
+    const total = getTutorials().reduce((acc, t) => acc + t.steps.length, 0);
+    const completed = completedSteps.size;
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+    
+    document.getElementById('completedSteps').textContent = completed;
+    document.getElementById('totalTutorials').textContent = getTutorials().length;
+    document.getElementById('progressPercent').textContent = percent + '%';
+    
+    // Sidebar progress
+    document.getElementById('sidebarProgress').style.width = percent + '%';
+    document.getElementById('sidebarProgressText').textContent = percent + '% Complete';
+}
+
+function updateProgressPage() {
+    const total = getTutorials().reduce((acc, t) => acc + t.steps.length, 0);
+    const completed = completedSteps.size;
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+    
+    document.getElementById('statCompleted').textContent = completed;
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('progressCircleText').textContent = percent + '%';
+    
+    // Calculate streak (simple version)
+    const streak = Math.floor(Math.random() * 10 + 1);
+    document.getElementById('statStreak').textContent = '🔥 ' + streak;
+    
+    // Update circle
+    const circle = document.getElementById('progressCircle');
+    const circumference = 2 * Math.PI * 50;
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
+    circle.style.stroke = percent >= 70 ? '#4CAF50' : percent >= 40 ? '#FFA500' : '#FF2D55';
+    
+    // Completed list
+    const list = document.getElementById('completedList');
+    const completedItems = Array.from(completedSteps);
+    
+    if (completedItems.length === 0) {
+        list.innerHTML = `
+            <div class="empty-state small">
+                <i class="fas fa-check-circle"></i>
+                <p>No completed steps yet. Start learning!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Get last 10 completed steps
+    const recentItems = completedItems.slice(-10);
+    list.innerHTML = recentItems.map(key => {
+        const [tutorialId, stepIndex] = key.split('-');
+        const tutorial = getTutorialById(tutorialId);
+        if (!tutorial) return '';
+        const step = tutorial.steps[parseInt(stepIndex)];
+        return `
+            <div class="completed-item" onclick="openTutorial('${tutorialId}')">
+                <span class="completed-icon">✅</span>
+                <div>
+                    <strong>${tutorial.icon} ${tutorial.title}</strong>
+                    <p>${step.title}</p>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ============================================
+// SHARE ACHIEVEMENT
+// ============================================
+function shareAchievement(tutorialId) {
+    const tutorial = getTutorialById(tutorialId);
+    if (!tutorial) return;
+    
+    const text = `🎉 I just completed "${tutorial.title}" on AI Se App Kaise Banaye! Learn app development with AI tools. 🚀 #AIBuilder #AppDevelopment`;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'My Achievement',
+            text: text,
+        }).catch(() => {});
+    } else {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast('📋 Achievement copied! Share it everywhere!');
+        }).catch(() => {
+            prompt('Copy this to share:', text);
+        });
+    }
+}
+
+// ============================================
+// STORAGE
+// ============================================
+function saveProgress() {
+    try {
+        localStorage.setItem('completedSteps', JSON.stringify([...completedSteps]));
+    } catch (e) {}
+}
+
+function loadProgress() {
+    try {
+        const saved = localStorage.getItem('completedSteps');
+        if (saved) {
+            const steps = JSON.parse(saved);
+            steps.forEach(step => completedSteps.add(step));
+            updateStats();
+        }
+    } catch (e) {}
+}
+
+function saveBookmarks() {
+    try {
+        localStorage.setItem('bookmarks', JSON.stringify([...bookmarks]));
+    } catch (e) {}
+}
+
+function loadBookmarks() {
+    try {
+        const saved = localStorage.getItem('bookmarks');
+        if (saved) {
+            const items = JSON.parse(saved);
+            items.forEach(id => bookmarks.add(id));
+        }
+    } catch (e) {}
+}
+
+function resetAllProgress() {
+    if (confirm('Are you sure you want to reset all progress?')) {
+        completedSteps.clear();
+        saveProgress();
+        updateStats();
+        updateProgressPage();
+        showToast('🔄 All progress reset');
+        playSound('click');
+    }
+}
+
+// ============================================
+// HEART RAIN
+// ============================================
+function startHeartRain(count = 20) {
+    const emojis = ['❤️', '🎉', '⭐', '🌟', '🎊', '💪', '🚀', '🏆', '💖', '✨'];
+    for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.className = 'heart-rain';
+            heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+            heart.style.animationDuration = (3 + Math.random() * 4) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 7000);
+        }, i * 100);
+    }
+}
+
+// ============================================
+// SETTINGS
+// ============================================
+function clearCache() {
+    if (confirm('Clear all cached data?')) {
+        localStorage.clear();
+        completedSteps.clear();
+        bookmarks.clear();
+        updateStats();
+        renderTutorials();
+        showToast('🗑️ Cache cleared!');
+        playSound('click');
+    }
+}
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+function showToast(message, duration = 2500) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => toast.classList.remove('show'), duration);
+}
+
+function playSound(type) {
+    try {
+        const soundToggle = document.getElementById('soundToggle');
+        if (soundToggle && !soundToggle.checked) return;
+        
+        const audio = new Audio();
+        if (type === 'click') {
+            audio.src = 'data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoAAACBhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqF';
+        } else if (type === 'success') {
+            audio.src = 'data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoAAACBhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqFhYqF';
+        }
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+    } catch (e) {}
+}
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (sidebar.classList.contains('open')) toggleSidebar();
+    }
+    if (e.key === 'ArrowRight' && document.getElementById('page-detail').classList.contains('active')) {
+        nextStep();
+    }
+    if (e.key === 'ArrowLeft' && document.getElementById('page-detail').classList.contains('active')) {
+        prevStep();
+    }
+});
+
+// ============================================
+// AUTO INIT
+// ============================================
+console.log('🤖 AI Se App Kaise Banaye - v4.0');
+console.log('📚 Learn app development from Basic to Advanced!');
+console.log('💡 Made with ❤️ by AI Builder Team');
