@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>🤖 AI Se App Kaise Banaye - Premium</title>
+    <title>🤖 AI Se App Kaise Banaye - Learn App Development</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -14,25 +14,26 @@
     <div id="splashScreen" class="splash-screen">
         <div class="splash-content">
             <div class="splash-logo">
-                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="48" stroke="url(#grad)" stroke-width="4"/>
-                    <path d="M35 45 L45 55 L65 35" stroke="url(#grad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="33" cy="33" r="4" fill="#FF2D55"/>
-                    <circle cx="67" cy="33" r="4" fill="#FF2D55"/>
+                <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="60" r="55" fill="url(#splashGrad)" opacity="0.15"/>
+                    <circle cx="60" cy="60" r="48" stroke="url(#splashGrad)" stroke-width="4"/>
+                    <path d="M45 50 L55 60 L75 40" stroke="url(#splashGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="42" cy="42" r="5" fill="#FF2D55"/>
+                    <circle cx="78" cy="42" r="5" fill="#FF2D55"/>
                     <defs>
-                        <linearGradient id="grad" x1="0" y1="0" x2="100" y2="100">
+                        <linearGradient id="splashGrad" x1="0" y1="0" x2="100" y2="100">
                             <stop offset="0%" stop-color="#FF2D55"/>
-                            <stop offset="100%" stop-color="#FF6B8A"/>
+                            <stop offset="100%" stop-color="#7C3AED"/>
                         </linearGradient>
                     </defs>
                 </svg>
             </div>
             <h1>AI Se App <span>Kaise Banaye</span></h1>
-            <p>✨ Premium Learning Experience</p>
+            <p>🎯 Learn App Development from Basic to Advanced</p>
             <div class="splash-loader">
                 <div class="loader-bar"></div>
             </div>
-            <div class="splash-version">v3.0 Pro</div>
+            <div class="splash-version">v4.0 | Premium Learning</div>
         </div>
     </div>
 
@@ -48,20 +49,18 @@
                 <div class="logo">
                     <span class="logo-icon">🤖</span>
                     <span class="logo-text">AI Guide</span>
-                    <span class="logo-badge">Pro</span>
                 </div>
             </div>
             <div class="header-right">
                 <button class="theme-toggle" id="themeToggle">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="notification-btn" onclick="showToast('📚 5 new lessons added!')">
+                <button class="notification-btn" onclick="showToast('📚 New tutorials added!')">
                     <i class="fas fa-bell"></i>
-                    <span class="badge">5</span>
+                    <span class="badge">3</span>
                 </button>
-                <div class="user-avatar" id="userAvatar" onclick="navigateTo('profile')">
+                <div class="user-avatar" onclick="showToast('👤 Welcome back, Learner!')">
                     <img src="https://ui-avatars.com/api/?name=Learner&background=FF2D55&color=fff&size=40&bold=true" alt="User" />
-                    <span class="online-dot"></span>
                 </div>
             </div>
         </header>
@@ -81,46 +80,40 @@
             <div class="sidebar-user">
                 <div class="avatar-wrapper">
                     <img src="https://ui-avatars.com/api/?name=Learner&background=FF2D55&color=fff&size=80&bold=true" alt="User" />
-                    <div class="level-badge">Lv. 3</div>
                 </div>
                 <h4>Hello, Learner!</h4>
-                <p>🚀 25% Complete</p>
+                <p>🚀 Keep learning, keep growing!</p>
                 <div class="mini-progress">
-                    <div class="mini-progress-bar" style="width:25%"></div>
+                    <div class="mini-progress-bar" id="sidebarProgress" style="width:0%"></div>
                 </div>
             </div>
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item active" data-page="home">
                     <span class="nav-icon"><i class="fas fa-home"></i></span>
                     <span class="nav-text">Home</span>
-                    <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
                 </a>
-                <a href="#" class="nav-item" data-page="steps">
-                    <span class="nav-icon"><i class="fas fa-shoe-prints"></i></span>
-                    <span class="nav-text">Step-by-Step</span>
+                <a href="#" class="nav-item" data-page="learn">
+                    <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
+                    <span class="nav-text">Learn</span>
                     <span class="nav-badge">12</span>
                 </a>
-                <a href="#" class="nav-item" data-page="methods">
-                    <span class="nav-icon"><i class="fas fa-layer-group"></i></span>
-                    <span class="nav-text">Build Methods</span>
+                <a href="#" class="nav-item" data-page="bookmarks">
+                    <span class="nav-icon"><i class="fas fa-bookmark"></i></span>
+                    <span class="nav-text">Bookmarks</span>
                 </a>
-                <a href="#" class="nav-item" data-page="tools">
-                    <span class="nav-icon"><i class="fas fa-tools"></i></span>
-                    <span class="nav-text">Tools & Tech</span>
+                <a href="#" class="nav-item" data-page="progress">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Progress</span>
                 </a>
-                <a href="#" class="nav-item" data-page="resources">
-                    <span class="nav-icon"><i class="fas fa-book"></i></span>
-                    <span class="nav-text">Resources</span>
-                </a>
-                <a href="#" class="nav-item" data-page="profile">
-                    <span class="nav-icon"><i class="fas fa-user"></i></span>
-                    <span class="nav-text">My Progress</span>
+                <a href="#" class="nav-item" data-page="settings">
+                    <span class="nav-icon"><i class="fas fa-cog"></i></span>
+                    <span class="nav-text">Settings</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
-                <button class="reset-btn" onclick="resetProgress()">
+                <button class="reset-btn" onclick="resetAllProgress()">
                     <i class="fas fa-redo"></i>
-                    <span>Reset Progress</span>
+                    <span>Reset All</span>
                 </button>
             </div>
         </div>
@@ -130,23 +123,23 @@
 
             <!-- ===== PAGE: HOME ===== -->
             <section id="page-home" class="page active">
-                <!-- Hero Banner -->
+                <!-- Hero -->
                 <div class="hero-banner">
                     <div class="hero-content">
-                        <div class="hero-tag">🎯 2024 Edition</div>
+                        <div class="hero-tag">🚀 2024 Edition</div>
                         <h1>Learn to Build<br/><span>Apps with AI</span></h1>
-                        <p>No coding experience needed. Start your journey today!</p>
+                        <p>From Basic to Advanced - Step by Step Guide</p>
                         <div class="hero-buttons">
-                            <button class="btn-primary" onclick="navigateTo('steps')">
+                            <button class="btn-primary" onclick="navigateTo('learn')">
                                 <i class="fas fa-rocket"></i> Start Learning
                             </button>
-                            <button class="btn-secondary" onclick="navigateTo('methods')">
-                                <i class="fas fa-eye"></i> Explore
+                            <button class="btn-secondary" onclick="showToast('📚 Browse all tutorials')">
+                                <i class="fas fa-book"></i> Browse
                             </button>
                         </div>
                     </div>
                     <div class="hero-graphic">
-                        <div class="floating-icon icon1">🤖</div>
+                        <div class="floating-icon icon1">📱</div>
                         <div class="floating-icon icon2">💻</div>
                         <div class="floating-icon icon3">🚀</div>
                         <div class="floating-icon icon4">✨</div>
@@ -155,75 +148,63 @@
 
                 <!-- Stats -->
                 <div class="stats-grid premium">
-                    <div class="stat-card premium">
+                    <div class="stat-card premium" onclick="navigateTo('learn')">
                         <div class="stat-icon">📚</div>
                         <div class="stat-info">
-                            <h3 id="stepCount">0</h3>
-                            <p>Steps Done</p>
+                            <h3 id="totalTutorials">12</h3>
+                            <p>Tutorials</p>
                         </div>
-                        <div class="stat-trend up">+12%</div>
                     </div>
-                    <div class="stat-card premium">
-                        <div class="stat-icon">🎯</div>
+                    <div class="stat-card premium" onclick="navigateTo('progress')">
+                        <div class="stat-icon">✅</div>
                         <div class="stat-info">
-                            <h3>4</h3>
-                            <p>Methods</p>
+                            <h3 id="completedTutorials">0</h3>
+                            <p>Completed</p>
                         </div>
-                        <div class="stat-trend up">+2</div>
                     </div>
-                    <div class="stat-card premium">
-                        <div class="stat-icon">🛠️</div>
-                        <div class="stat-info">
-                            <h3>8</h3>
-                            <p>Tools</p>
-                        </div>
-                        <div class="stat-trend">+3</div>
-                    </div>
-                    <div class="stat-card premium">
+                    <div class="stat-card premium" onclick="showToast('🏆 You\'re doing great!')">
                         <div class="stat-icon">🏆</div>
                         <div class="stat-info">
-                            <h3>3</h3>
-                            <p>Projects</p>
+                            <h3 id="progressPercent">0%</h3>
+                            <p>Progress</p>
                         </div>
-                        <div class="stat-trend up">+1</div>
                     </div>
                 </div>
 
-                <!-- Quick Start -->
+                <!-- Quick Categories -->
                 <div class="section-header premium">
-                    <h3>⚡ Quick Start Guide</h3>
-                    <a href="#" class="view-all">View All →</a>
+                    <h3>⚡ Quick Start</h3>
                 </div>
                 <div class="quick-steps premium">
-                    <div class="qs-step premium" onclick="navigateTo('steps')">
-                        <div class="qs-number">01</div>
+                    <div class="qs-step premium" onclick="filterTutorials('all')">
+                        <span class="qs-number">📚</span>
                         <div class="qs-content">
-                            <h4>Choose Your Method</h4>
-                            <p>Pick how you want to build</p>
+                            <h4>All Tutorials</h4>
+                            <p>View all learning paths</p>
                         </div>
                         <i class="fas fa-chevron-right"></i>
                     </div>
-                    <div class="qs-step premium" onclick="navigateTo('steps')">
-                        <div class="qs-number">02</div>
+                    <div class="qs-step premium" onclick="filterTutorials('beginner')">
+                        <span class="qs-number">🌱</span>
                         <div class="qs-content">
-                            <h4>Follow Steps</h4>
-                            <p>Learn step-by-step</p>
+                            <h4>Beginner</h4>
+                            <p>Start from scratch</p>
                         </div>
                         <i class="fas fa-chevron-right"></i>
                     </div>
-                    <div class="qs-step premium" onclick="navigateTo('tools')">
-                        <div class="qs-number">03</div>
+                    <div class="qs-step premium" onclick="filterTutorials('intermediate')">
+                        <span class="qs-number">🚀</span>
                         <div class="qs-content">
-                            <h4>Use Tools</h4>
-                            <p>Apply the right tools</p>
+                            <h4>Intermediate</h4>
+                            <p>Level up your skills</p>
                         </div>
                         <i class="fas fa-chevron-right"></i>
                     </div>
-                    <div class="qs-step premium" onclick="navigateTo('resources')">
-                        <div class="qs-number">04</div>
+                    <div class="qs-step premium" onclick="filterTutorials('advanced')">
+                        <span class="qs-number">🏆</span>
                         <div class="qs-content">
-                            <h4>Launch Your App</h4>
-                            <p>Deploy and share</p>
+                            <h4>Advanced</h4>
+                            <p>Master app development</p>
                         </div>
                         <i class="fas fa-chevron-right"></i>
                     </div>
@@ -232,643 +213,168 @@
                 <!-- Featured Tutorials -->
                 <div class="section-header premium">
                     <h3>🔥 Popular Tutorials</h3>
-                    <a href="#" class="view-all">View All →</a>
+                    <span class="view-all" onclick="navigateTo('learn')">View All →</span>
                 </div>
-                <div class="featured-grid">
-                    <div class="featured-card">
-                        <div class="featured-thumb">
-                            <span class="featured-badge">Beginner</span>
-                            <span class="featured-duration">15 min</span>
-                        </div>
-                        <div class="featured-body">
-                            <h4>Build Your First App</h4>
-                            <p>Learn the basics of app development</p>
-                            <div class="featured-meta">
-                                <span><i class="fas fa-user"></i> 2.3k</span>
-                                <span><i class="fas fa-star"></i> 4.8</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-card">
-                        <div class="featured-thumb">
-                            <span class="featured-badge">Intermediate</span>
-                            <span class="featured-duration">30 min</span>
-                        </div>
-                        <div class="featured-body">
-                            <h4>AI Chatbot Tutorial</h4>
-                            <p>Build an AI-powered chatbot</p>
-                            <div class="featured-meta">
-                                <span><i class="fas fa-user"></i> 1.8k</span>
-                                <span><i class="fas fa-star"></i> 4.9</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="featured-grid" id="featuredGrid">
+                    <!-- Will be populated by JavaScript -->
                 </div>
             </section>
 
-            <!-- ===== PAGE: STEPS ===== -->
-            <section id="page-steps" class="page">
+            <!-- ===== PAGE: LEARN ===== -->
+            <section id="page-learn" class="page">
                 <div class="page-header premium">
-                    <h2>👣 Learning Path</h2>
-                    <p>Follow these steps to build your dream app</p>
+                    <h2>📚 All Tutorials</h2>
+                    <p>Choose your learning path</p>
                 </div>
 
-                <!-- Premium Progress -->
-                <div class="premium-progress">
-                    <div class="progress-header">
-                        <span class="progress-label">Your Journey</span>
-                        <span class="progress-percent" id="progressText">0%</span>
+                <!-- Search & Filter -->
+                <div class="search-filter">
+                    <div class="search-box premium">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search tutorials..." oninput="searchTutorials()" />
+                        <button class="search-clear" onclick="clearSearch()">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
-                    <div class="progress-track">
-                        <div class="progress-fill premium" id="progressFill" style="width:0%"></div>
-                        <div class="progress-dots">
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all" onclick="filterTutorials('all')">All</button>
+                        <button class="filter-tab" data-filter="beginner" onclick="filterTutorials('beginner')">🌱 Beginner</button>
+                        <button class="filter-tab" data-filter="intermediate" onclick="filterTutorials('intermediate')">🚀 Intermediate</button>
+                        <button class="filter-tab" data-filter="advanced" onclick="filterTutorials('advanced')">🏆 Advanced</button>
                     </div>
                 </div>
 
-                <!-- Steps -->
-                <div class="steps-timeline" id="stepsContainer">
-                    <!-- Step 1 -->
-                    <div class="step-card premium" data-step="1">
-                        <div class="step-indicator">
-                            <span class="step-number">1</span>
-                            <span class="step-line"></span>
-                        </div>
-                        <div class="step-card-content">
-                            <div class="step-header" onclick="toggleStep(this)">
-                                <div class="step-header-left">
-                                    <span class="step-emoji">💡</span>
-                                    <div>
-                                        <h4>Define Your App Idea</h4>
-                                        <p>Start with a clear vision</p>
-                                    </div>
-                                </div>
-                                <div class="step-header-right">
-                                    <span class="step-status" id="stepStatus1">Pending</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="step-body">
-                                <div class="step-content">
-                                    <div class="step-grid">
-                                        <div class="step-list">
-                                            <h5>📋 What to do:</h5>
-                                            <ul>
-                                                <li><i class="fas fa-check-circle"></i> Identify a problem you want to solve</li>
-                                                <li><i class="fas fa-check-circle"></i> Research existing solutions</li>
-                                                <li><i class="fas fa-check-circle"></i> Define your target audience</li>
-                                                <li><i class="fas fa-check-circle"></i> Write down your core features</li>
-                                            </ul>
-                                        </div>
-                                        <div class="step-tip premium">
-                                            <div class="tip-icon">💡</div>
-                                            <div>
-                                                <strong>Pro Tip:</strong>
-                                                <p>Start small! Build a minimal version first, then add features gradually.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="step-complete premium" onclick="completeStep(this, 1)">
-                                        <i class="fas fa-check"></i> Mark as Completed
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="step-card premium" data-step="2">
-                        <div class="step-indicator">
-                            <span class="step-number">2</span>
-                            <span class="step-line"></span>
-                        </div>
-                        <div class="step-card-content">
-                            <div class="step-header" onclick="toggleStep(this)">
-                                <div class="step-header-left">
-                                    <span class="step-emoji">🎨</span>
-                                    <div>
-                                        <h4>Design Your App</h4>
-                                        <p>Create the look and feel</p>
-                                    </div>
-                                </div>
-                                <div class="step-header-right">
-                                    <span class="step-status" id="stepStatus2">Pending</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="step-body">
-                                <div class="step-content">
-                                    <div class="step-grid">
-                                        <div class="step-list">
-                                            <h5>🎯 Design Steps:</h5>
-                                            <ul>
-                                                <li><i class="fas fa-check-circle"></i> Sketch wireframes on paper</li>
-                                                <li><i class="fas fa-check-circle"></i> Choose color scheme & typography</li>
-                                                <li><i class="fas fa-check-circle"></i> Design user flow</li>
-                                                <li><i class="fas fa-check-circle"></i> Use Figma or Canva for mockups</li>
-                                            </ul>
-                                        </div>
-                                        <div class="step-tip premium">
-                                            <div class="tip-icon">🎨</div>
-                                            <div>
-                                                <strong>Pro Tip:</strong>
-                                                <p>Keep it simple! Clean, minimal design works best for users.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="step-complete premium" onclick="completeStep(this, 2)">
-                                        <i class="fas fa-check"></i> Mark as Completed
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="step-card premium" data-step="3">
-                        <div class="step-indicator">
-                            <span class="step-number">3</span>
-                            <span class="step-line"></span>
-                        </div>
-                        <div class="step-card-content">
-                            <div class="step-header" onclick="toggleStep(this)">
-                                <div class="step-header-left">
-                                    <span class="step-emoji">🛠️</span>
-                                    <div>
-                                        <h4>Choose Your Technology</h4>
-                                        <p>Pick the right tools</p>
-                                    </div>
-                                </div>
-                                <div class="step-header-right">
-                                    <span class="step-status" id="stepStatus3">Pending</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="step-body">
-                                <div class="step-content">
-                                    <div class="tech-grid premium">
-                                        <div class="tech-card">
-                                            <span class="tech-icon">🌐</span>
-                                            <strong>Web Apps</strong>
-                                            <p>HTML, CSS, JavaScript, React</p>
-                                        </div>
-                                        <div class="tech-card">
-                                            <span class="tech-icon">📱</span>
-                                            <strong>Mobile Apps</strong>
-                                            <p>Flutter, React Native, Kotlin</p>
-                                        </div>
-                                        <div class="tech-card">
-                                            <span class="tech-icon">🤖</span>
-                                            <strong>AI-Powered</strong>
-                                            <p>OpenAI API, Python, TensorFlow</p>
-                                        </div>
-                                        <div class="tech-card">
-                                            <span class="tech-icon">🚀</span>
-                                            <strong>No-Code</strong>
-                                            <p>Bubble, Glide, Adalo</p>
-                                        </div>
-                                    </div>
-                                    <div class="step-tip premium">
-                                        <div class="tip-icon">🔧</div>
-                                        <div>
-                                            <strong>Pro Tip:</strong>
-                                            <p>Start with what you know best. Learn new technologies as you progress.</p>
-                                        </div>
-                                    </div>
-                                    <button class="step-complete premium" onclick="completeStep(this, 3)">
-                                        <i class="fas fa-check"></i> Mark as Completed
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 4 -->
-                    <div class="step-card premium" data-step="4">
-                        <div class="step-indicator">
-                            <span class="step-number">4</span>
-                            <span class="step-line"></span>
-                        </div>
-                        <div class="step-card-content">
-                            <div class="step-header" onclick="toggleStep(this)">
-                                <div class="step-header-left">
-                                    <span class="step-emoji">💻</span>
-                                    <div>
-                                        <h4>Build Your App</h4>
-                                        <p>Start coding or building</p>
-                                    </div>
-                                </div>
-                                <div class="step-header-right">
-                                    <span class="step-status" id="stepStatus4">Pending</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="step-body">
-                                <div class="step-content">
-                                    <div class="step-grid">
-                                        <div class="step-list">
-                                            <h5>🚀 Building Process:</h5>
-                                            <ul>
-                                                <li><i class="fas fa-check-circle"></i> Set up development environment</li>
-                                                <li><i class="fas fa-check-circle"></i> Create project structure</li>
-                                                <li><i class="fas fa-check-circle"></i> Build core features first</li>
-                                                <li><i class="fas fa-check-circle"></i> Test as you go</li>
-                                            </ul>
-                                        </div>
-                                        <div class="step-tip premium">
-                                            <div class="tip-icon">💻</div>
-                                            <div>
-                                                <strong>Pro Tip:</strong>
-                                                <p>Break your app into small pieces. Build one feature at a time.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="step-complete premium" onclick="completeStep(this, 4)">
-                                        <i class="fas fa-check"></i> Mark as Completed
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 5 -->
-                    <div class="step-card premium" data-step="5">
-                        <div class="step-indicator">
-                            <span class="step-number">5</span>
-                            <span class="step-line"></span>
-                        </div>
-                        <div class="step-card-content">
-                            <div class="step-header" onclick="toggleStep(this)">
-                                <div class="step-header-left">
-                                    <span class="step-emoji">🧪</span>
-                                    <div>
-                                        <h4>Test Your App</h4>
-                                        <p>Make sure everything works</p>
-                                    </div>
-                                </div>
-                                <div class="step-header-right">
-                                    <span class="step-status" id="stepStatus5">Pending</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="step-body">
-                                <div class="step-content">
-                                    <div class="step-grid">
-                                        <div class="step-list">
-                                            <h5>✅ Testing Checklist:</h5>
-                                            <ul>
-                                                <li><i class="fas fa-check-circle"></i> Test on different devices</li>
-                                                <li><i class="fas fa-check-circle"></i> Check for bugs and errors</li>
-                                                <li><i class="fas fa-check-circle"></i> Get feedback from users</li>
-                                                <li><i class="fas fa-check-circle"></i> Improve based on feedback</li>
-                                            </ul>
-                                        </div>
-                                        <div class="step-tip premium">
-                                            <div class="tip-icon">🧪</div>
-                                            <div>
-                                                <strong>Pro Tip:</strong>
-                                                <p>Test early and often. Fix small issues before they become big problems.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="step-complete premium" onclick="completeStep(this, 5)">
-                                        <i class="fas fa-check"></i> Mark as Completed
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 6 -->
-                    <div class="step-card premium" data-step="6">
-                        <div class="step-indicator">
-                            <span class="step-number">6</span>
-                            <span class="step-line"></span>
-                        </div>
-                        <div class="step-card-content">
-                            <div class="step-header" onclick="toggleStep(this)">
-                                <div class="step-header-left">
-                                    <span class="step-emoji">🚀</span>
-                                    <div>
-                                        <h4>Deploy Your App</h4>
-                                        <p>Make it available to users</p>
-                                    </div>
-                                </div>
-                                <div class="step-header-right">
-                                    <span class="step-status" id="stepStatus6">Pending</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="step-body">
-                                <div class="step-content">
-                                    <div class="step-grid">
-                                        <div class="step-list">
-                                            <h5>📦 Deployment Options:</h5>
-                                            <ul>
-                                                <li><i class="fas fa-check-circle"></i> Vercel - For web apps</li>
-                                                <li><i class="fas fa-check-circle"></i> Netlify - Easy hosting</li>
-                                                <li><i class="fas fa-check-circle"></i> GitHub Pages - Free hosting</li>
-                                                <li><i class="fas fa-check-circle"></i> App Stores - For mobile apps</li>
-                                            </ul>
-                                        </div>
-                                        <div class="step-tip premium">
-                                            <div class="tip-icon">🚀</div>
-                                            <div>
-                                                <strong>Pro Tip:</strong>
-                                                <p>Start with free hosting like Vercel. Upgrade as you grow!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="step-complete premium" onclick="completeStep(this, 6)">
-                                        <i class="fas fa-check"></i> Mark as Completed
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 7 -->
-                    <div class="step-card premium" data-step="7">
-                        <div class="step-indicator">
-                            <span class="step-number">7</span>
-                            <span class="step-line"></span>
-                        </div>
-                        <div class="step-card-content">
-                            <div class="step-header" onclick="toggleStep(this)">
-                                <div class="step-header-left">
-                                    <span class="step-emoji">📈</span>
-                                    <div>
-                                        <h4>Market Your App</h4>
-                                        <p>Get users to your app</p>
-                                    </div>
-                                </div>
-                                <div class="step-header-right">
-                                    <span class="step-status" id="stepStatus7">Pending</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="step-body">
-                                <div class="step-content">
-                                    <div class="step-grid">
-                                        <div class="step-list">
-                                            <h5>📣 Marketing Strategies:</h5>
-                                            <ul>
-                                                <li><i class="fas fa-check-circle"></i> Create a landing page</li>
-                                                <li><i class="fas fa-check-circle"></i> Share on social media</li>
-                                                <li><i class="fas fa-check-circle"></i> Write blog posts</li>
-                                                <li><i class="fas fa-check-circle"></i> Collect user testimonials</li>
-                                            </ul>
-                                        </div>
-                                        <div class="step-tip premium">
-                                            <div class="tip-icon">📈</div>
-                                            <div>
-                                                <strong>Pro Tip:</strong>
-                                                <p>Start marketing before launch. Build excitement early!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="step-complete premium" onclick="completeStep(this, 7)">
-                                        <i class="fas fa-check"></i> Mark as Completed
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 8 -->
-                    <div class="step-card premium" data-step="8">
-                        <div class="step-indicator">
-                            <span class="step-number">8</span>
-                            <span class="step-line"></span>
-                        </div>
-                        <div class="step-card-content">
-                            <div class="step-header" onclick="toggleStep(this)">
-                                <div class="step-header-left">
-                                    <span class="step-emoji">🔄</span>
-                                    <div>
-                                        <h4>Iterate & Improve</h4>
-                                        <p>Keep making it better</p>
-                                    </div>
-                                </div>
-                                <div class="step-header-right">
-                                    <span class="step-status" id="stepStatus8">Pending</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="step-body">
-                                <div class="step-content">
-                                    <div class="step-grid">
-                                        <div class="step-list">
-                                            <h5>🔄 Improvement Cycle:</h5>
-                                            <ul>
-                                                <li><i class="fas fa-check-circle"></i> Listen to user feedback</li>
-                                                <li><i class="fas fa-check-circle"></i> Add new features</li>
-                                                <li><i class="fas fa-check-circle"></i> Fix bugs quickly</li>
-                                                <li><i class="fas fa-check-circle"></i> Update regularly</li>
-                                            </ul>
-                                        </div>
-                                        <div class="step-tip premium">
-                                            <div class="tip-icon">🔄</div>
-                                            <div>
-                                                <strong>Pro Tip:</strong>
-                                                <p>Your app is never finished! Always look for ways to improve.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="step-complete premium" onclick="completeStep(this, 8)">
-                                        <i class="fas fa-check"></i> Mark as Completed
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Tutorial Grid -->
+                <div class="tutorial-grid premium" id="tutorialGrid">
+                    <!-- Will be populated by JavaScript -->
                 </div>
+            </section>
 
-                <!-- Congrats -->
-                <div class="congrats premium" id="congrats" style="display:none;">
-                    <div class="congrats-icon">🏆</div>
-                    <h3>🎉 Congratulations!</h3>
-                    <p>You've completed all steps! You're now ready to build amazing apps with AI.</p>
-                    <button class="share-btn premium" onclick="shareAchievement()">
-                        <i class="fas fa-share-alt"></i> Share Achievement
+            <!-- ===== PAGE: TUTORIAL DETAIL ===== -->
+            <section id="page-detail" class="page">
+                <div class="detail-header">
+                    <button class="back-btn" onclick="navigateTo('learn')">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark()">
+                        <i class="fas fa-bookmark"></i>
                     </button>
                 </div>
+                <div id="tutorialDetail">
+                    <!-- Will be populated by JavaScript -->
+                </div>
             </section>
 
-            <!-- ===== PAGE: METHODS ===== -->
-            <section id="page-methods" class="page">
+            <!-- ===== PAGE: BOOKMARKS ===== -->
+            <section id="page-bookmarks" class="page">
                 <div class="page-header premium">
-                    <h2>🎨 Build Methods</h2>
-                    <p>Choose how you want to build your app</p>
+                    <h2>📑 Bookmarks</h2>
+                    <p>Your saved tutorials</p>
                 </div>
-
-                <div class="methods-grid premium">
-                    <div class="method-card premium" onclick="showMethodDetail('coding')">
-                        <div class="method-icon">💻</div>
-                        <h4>Coding Method</h4>
-                        <p>Build from scratch with code</p>
-                        <span class="method-tag">Advanced</span>
-                        <div class="method-hover">Learn More →</div>
-                    </div>
-                    <div class="method-card premium" onclick="showMethodDetail('nocode')">
-                        <div class="method-icon">🛠️</div>
-                        <h4>No-Code Method</h4>
-                        <p>Build without coding</p>
-                        <span class="method-tag">Beginner</span>
-                        <div class="method-hover">Learn More →</div>
-                    </div>
-                    <div class="method-card premium" onclick="showMethodDetail('ai')">
-                        <div class="method-icon">🤖</div>
-                        <h4>AI-Powered Method</h4>
-                        <p>Use AI to build</p>
-                        <span class="method-tag">Intermediate</span>
-                        <div class="method-hover">Learn More →</div>
-                    </div>
-                    <div class="method-card premium" onclick="showMethodDetail('hybrid')">
-                        <div class="method-icon">🔀</div>
-                        <h4>Hybrid Method</h4>
-                        <p>Combine different approaches</p>
-                        <span class="method-tag">Flexible</span>
-                        <div class="method-hover">Learn More →</div>
-                    </div>
+                <div class="bookmarks-grid" id="bookmarksGrid">
+                    <!-- Will be populated by JavaScript -->
                 </div>
             </section>
 
-            <!-- ===== PAGE: TOOLS ===== -->
-            <section id="page-tools" class="page">
+            <!-- ===== PAGE: PROGRESS ===== -->
+            <section id="page-progress" class="page">
                 <div class="page-header premium">
-                    <h2>🛠️ Tools & Technology</h2>
-                    <p>Essential tools for app building</p>
+                    <h2>📊 Your Progress</h2>
+                    <p>Track your learning journey</p>
                 </div>
 
-                <div class="tools-grid premium">
-                    <div class="tool-card premium" onclick="showToolInfo('design')">
-                        <div class="tool-icon">🎨</div>
-                        <h4>Design Tools</h4>
-                        <p>Figma, Canva, Adobe XD</p>
-                        <span class="tool-type">Design</span>
+                <div class="progress-overview">
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 120 120">
+                            <circle class="bg" cx="60" cy="60" r="50"/>
+                            <circle class="progress" id="progressCircle" cx="60" cy="60" r="50"/>
+                            <text x="60" y="60" text-anchor="middle" dominant-baseline="central" id="progressCircleText">0%</text>
+                        </svg>
                     </div>
-                    <div class="tool-card premium" onclick="showToolInfo('development')">
-                        <div class="tool-icon">💻</div>
-                        <h4>Development Tools</h4>
-                        <p>VS Code, Git, Chrome DevTools</p>
-                        <span class="tool-type">Dev</span>
-                    </div>
-                    <div class="tool-card premium" onclick="showToolInfo('ai')">
-                        <div class="tool-icon">🤖</div>
-                        <h4>AI Tools</h4>
-                        <p>OpenAI API, Hugging Face</p>
-                        <span class="tool-type">AI</span>
-                    </div>
-                    <div class="tool-card premium" onclick="showToolInfo('deployment')">
-                        <div class="tool-icon">🚀</div>
-                        <h4>Deployment Tools</h4>
-                        <p>Vercel, Netlify, GitHub</p>
-                        <span class="tool-type">Deploy</span>
-                    </div>
-                    <div class="tool-card premium" onclick="showToolInfo('testing')">
-                        <div class="tool-icon">🧪</div>
-                        <h4>Testing Tools</h4>
-                        <p>Jest, Lighthouse, BrowserStack</p>
-                        <span class="tool-type">Testing</span>
-                    </div>
-                    <div class="tool-card premium" onclick="showToolInfo('marketing')">
-                        <div class="tool-icon">📈</div>
-                        <h4>Marketing Tools</h4>
-                        <p>Google Analytics, Hotjar</p>
-                        <span class="tool-type">Marketing</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== PAGE: RESOURCES ===== -->
-            <section id="page-resources" class="page">
-                <div class="page-header premium">
-                    <h2>📚 Learning Resources</h2>
-                    <p>Free books, courses, and more</p>
-                </div>
-
-                <div class="resources-grid premium">
-                    <div class="resource-card premium">
-                        <div class="resource-icon">📖</div>
-                        <h4>Free Online Courses</h4>
-                        <p>YouTube, Coursera, Udemy</p>
-                        <button onclick="showToast('📖 Opening resources...')">Explore</button>
-                    </div>
-                    <div class="resource-card premium">
-                        <div class="resource-icon">📝</div>
-                        <h4>Documentation</h4>
-                        <p>MDN, W3Schools, DevDocs</p>
-                        <button onclick="showToast('📝 Loading docs...')">Explore</button>
-                    </div>
-                    <div class="resource-card premium">
-                        <div class="resource-icon">🎓</div>
-                        <h4>Interactive Tutorials</h4>
-                        <p>Codecademy, Scrimba, FreeCodeCamp</p>
-                        <button onclick="showToast('🎓 Loading tutorials...')">Explore</button>
-                    </div>
-                    <div class="resource-card premium">
-                        <div class="resource-icon">💬</div>
-                        <h4>Community Forums</h4>
-                        <p>Stack Overflow, Reddit, Discord</p>
-                        <button onclick="showToast('💬 Opening community...')">Explore</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== PAGE: PROFILE ===== -->
-            <section id="page-profile" class="page">
-                <div class="profile-header premium">
-                    <div class="profile-avatar premium">
-                        <img src="https://ui-avatars.com/api/?name=Learner&background=FF2D55&color=fff&size=120&bold=true" alt="User" />
-                        <div class="level-badge large">Lv. 3</div>
-                    </div>
-                    <h2>Learner</h2>
-                    <p class="profile-title">🚀 App Developer in the making</p>
-                    <div class="profile-stats premium">
-                        <div class="p-stat premium">
-                            <span id="completedSteps">0</span>
-                            <p>Steps Done</p>
+                    <div class="progress-stats">
+                        <div class="progress-stat">
+                            <span class="stat-value" id="statCompleted">0</span>
+                            <span class="stat-label">Completed</span>
                         </div>
-                        <div class="p-stat premium">
-                            <span id="progressPercent">0%</span>
-                            <p>Progress</p>
+                        <div class="progress-stat">
+                            <span class="stat-value" id="statTotal">12</span>
+                            <span class="stat-label">Total</span>
                         </div>
-                        <div class="p-stat premium">
-                            <span>🏆</span>
-                            <p>Achievements</p>
+                        <div class="progress-stat">
+                            <span class="stat-value" id="statStreak">🔥 0</span>
+                            <span class="stat-label">Day Streak</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="profile-menu premium">
-                    <div class="profile-menu-item premium active" onclick="showToast('📊 Loading progress...')">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Your Progress</span>
-                        <span class="badge premium">Active</span>
+                <div class="section-header premium">
+                    <h3>📋 Completed Tutorials</h3>
+                </div>
+                <div class="completed-list" id="completedList">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- ===== PAGE: SETTINGS ===== -->
+            <section id="page-settings" class="page">
+                <div class="page-header premium">
+                    <h2>⚙️ Settings</h2>
+                    <p>Customize your experience</p>
+                </div>
+
+                <div class="settings-list premium">
+                    <div class="setting-item premium">
+                        <div class="setting-icon">🌓</div>
+                        <div class="setting-info">
+                            <h4>Dark Mode</h4>
+                            <p>Toggle dark/light theme</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()" />
+                            <span class="slider"></span>
+                        </label>
                     </div>
-                    <div class="profile-menu-item premium" onclick="showToast('📚 Loading completed lessons...')">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Completed Lessons</span>
-                        <span class="badge premium" id="completedBadge">0</span>
+
+                    <div class="setting-item premium">
+                        <div class="setting-icon">🔊</div>
+                        <div class="setting-info">
+                            <h4>Sound Effects</h4>
+                            <p>Play sounds on interactions</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="soundToggle" checked />
+                            <span class="slider"></span>
+                        </label>
                     </div>
-                    <div class="profile-menu-item premium" onclick="showToast('🏅 Loading achievements...')">
-                        <i class="fas fa-trophy"></i>
-                        <span>Achievements</span>
-                        <span class="badge premium">3</span>
+
+                    <div class="setting-item premium">
+                        <div class="setting-icon">📱</div>
+                        <div class="setting-info">
+                            <h4>Auto-Play Videos</h4>
+                            <p>Auto-play tutorial videos</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="autoPlayToggle" checked />
+                            <span class="slider"></span>
+                        </label>
                     </div>
-                    <div class="profile-menu-item premium" onclick="showToast('📈 Loading stats...')">
-                        <i class="fas fa-clock"></i>
-                        <span>Learning Time</span>
-                        <span class="badge premium">2h</span>
+
+                    <div class="setting-item premium">
+                        <div class="setting-icon">💾</div>
+                        <div class="setting-info">
+                            <h4>Storage</h4>
+                            <p>Clear cached data</p>
+                        </div>
+                        <button class="setting-action" onclick="clearCache()">Clear</button>
+                    </div>
+
+                    <div class="setting-item premium">
+                        <div class="setting-icon">ℹ️</div>
+                        <div class="setting-info">
+                            <h4>About</h4>
+                            <p>Version 4.0.0</p>
+                        </div>
+                        <button class="setting-action" onclick="showToast('🤖 AI Guide v4.0')">Info</button>
                     </div>
                 </div>
             </section>
@@ -881,26 +387,26 @@
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </button>
-            <button class="nav-btn premium" data-page="steps">
-                <i class="fas fa-shoe-prints"></i>
-                <span>Steps</span>
+            <button class="nav-btn premium" data-page="learn">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Learn</span>
             </button>
-            <button class="nav-btn premium" data-page="methods">
-                <i class="fas fa-layer-group"></i>
-                <span>Methods</span>
+            <button class="nav-btn premium" data-page="bookmarks">
+                <i class="fas fa-bookmark"></i>
+                <span>Saved</span>
             </button>
-            <button class="nav-btn premium" data-page="tools">
-                <i class="fas fa-tools"></i>
-                <span>Tools</span>
+            <button class="nav-btn premium" data-page="progress">
+                <i class="fas fa-chart-line"></i>
+                <span>Progress</span>
             </button>
-            <button class="nav-btn premium" data-page="profile">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
+            <button class="nav-btn premium" data-page="settings">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
             </button>
         </nav>
 
         <!-- ===== FLOATING ACTION BUTTON ===== -->
-        <button class="fab premium" onclick="showToast('🤖 AI Assistant is here! How can I help?')">
+        <button class="fab premium" onclick="showToast('🤖 AI Assistant: How can I help you?')">
             <i class="fas fa-robot"></i>
         </button>
 
@@ -909,19 +415,8 @@
     <!-- ===== TOAST ===== -->
     <div class="toast premium" id="toast"></div>
 
-    <!-- ===== MODAL ===== -->
-    <div class="modal-overlay premium" id="modalOverlay">
-        <div class="modal premium">
-            <div class="modal-header premium">
-                <h3 id="modalTitle">Method Detail</h3>
-                <button class="modal-close" onclick="closeModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body premium" id="modalBody"></div>
-        </div>
-    </div>
-
+    <!-- ===== TUTORIAL DATA ===== -->
+    <script src="data/tutorials.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
