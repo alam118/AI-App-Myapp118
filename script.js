@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('splashScreen').classList.add('hide');
         document.getElementById('mainApp').style.display = 'flex';
-        showToast('👋 Welcome to AI App Guide!');
+        showToast('👋 Welcome to AI Guide Pro!');
         loadProgress();
     }, 2800);
 });
@@ -38,39 +38,49 @@ themeToggle.addEventListener('click', () => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
     themeToggle.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     showToast(isDark ? '🌙 Dark Mode' : '☀️ Light Mode');
+    playSound('click');
 });
 
 // ============================================
 // NAVIGATION
 // ============================================
 function navigateTo(page) {
+    // Hide all pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const targetPage = document.getElementById('page-' + page);
-    if (targetPage) targetPage.classList.add('active');
+    
+    // Show target
+    const target = document.getElementById('page-' + page);
+    if (target) target.classList.add('active');
 
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    const activeNav = document.querySelector(`.nav-btn[data-page="${page}"]`);
+    // Update bottom nav
+    document.querySelectorAll('.nav-btn.premium').forEach(b => b.classList.remove('active'));
+    const activeNav = document.querySelector(`.nav-btn.premium[data-page="${page}"]`);
     if (activeNav) activeNav.classList.add('active');
 
+    // Update sidebar
     document.querySelectorAll('.sidebar-nav .nav-item').forEach(b => b.classList.remove('active'));
     const activeSidebar = document.querySelector(`.sidebar-nav .nav-item[data-page="${page}"]`);
     if (activeSidebar) activeSidebar.classList.add('active');
 
+    // Close sidebar
     if (window.innerWidth < 768) {
         sidebar.classList.remove('open');
         sidebarOverlay.classList.remove('active');
     }
 
+    // Scroll to top
     document.getElementById('mainContent').scrollTop = 0;
 }
 
-document.querySelectorAll('.nav-btn').forEach(btn => {
+// Bottom nav
+document.querySelectorAll('.nav-btn.premium').forEach(btn => {
     btn.addEventListener('click', () => {
         const page = btn.dataset.page;
         if (page) navigateTo(page);
     });
 });
 
+// Sidebar nav
 document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => {
     item.addEventListener('click', (e) => {
         e.preventDefault();
@@ -84,29 +94,42 @@ document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => {
 // ============================================
 let completedSteps = new Set();
 
-function toggleStep(btn) {
-    const content = btn.closest('.step-card').querySelector('.step-content');
-    content.classList.toggle('open');
-    btn.querySelector('i').classList.toggle('fa-chevron-down');
-    btn.querySelector('i').classList.toggle('fa-chevron-up');
+function toggleStep(header) {
+    const body = header.closest('.step-card-content').querySelector('.step-body');
+    body.classList.toggle('open');
+    const icon = header.querySelector('.fa-chevron-down, .fa-chevron-up');
+    if (icon) {
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    }
 }
 
 function completeStep(btn, stepNum) {
-    const card = btn.closest('.step-card');
+    const card = btn.closest('.step-card.premium');
+    const status = document.getElementById('stepStatus' + stepNum);
     
     if (completedSteps.has(stepNum)) {
         completedSteps.delete(stepNum);
         card.classList.remove('completed');
         btn.classList.remove('completed');
         btn.innerHTML = '<i class="fas fa-check"></i> Mark as Completed';
-        showToast('🔄 Step unmarked');
+        if (status) {
+            status.textContent = 'Pending';
+            status.className = 'step-status pending';
+        }
+        showToast('🔄 Step ' + stepNum + ' unmarked');
     } else {
         completedSteps.add(stepNum);
         card.classList.add('completed');
         btn.classList.add('completed');
         btn.innerHTML = '<i class="fas fa-check"></i> ✅ Completed';
+        if (status) {
+            status.textContent = 'Completed';
+            status.className = 'step-status completed';
+        }
         showToast('🎉 Step ' + stepNum + ' completed!');
         playSound('success');
+        startHeartRain(20);
     }
     
     saveProgress();
@@ -125,6 +148,20 @@ function updateProgress() {
     document.getElementById('completedBadge').textContent = completed;
     document.getElementById('stepCount').textContent = completed;
     
+    // Update sidebar progress
+    const miniBar = document.querySelector('.mini-progress-bar');
+    if (miniBar) miniBar.style.width = percent + '%';
+    
+    // Update dots
+    document.querySelectorAll('.progress-dots .dot').forEach((dot, index) => {
+        if (index < completed) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+    
+    // Show congrats
     if (percent === 100) {
         document.getElementById('congrats').style.display = 'block';
         startHeartRain(50);
@@ -149,13 +186,18 @@ function loadProgress() {
             const steps = JSON.parse(saved);
             steps.forEach(step => {
                 completedSteps.add(step);
-                const card = document.querySelector(`.step-card[data-step="${step}"]`);
+                const card = document.querySelector(`.step-card.premium[data-step="${step}"]`);
                 if (card) {
                     card.classList.add('completed');
-                    const btn = card.querySelector('.step-complete');
+                    const btn = card.querySelector('.step-complete.premium');
                     if (btn) {
                         btn.classList.add('completed');
                         btn.innerHTML = '<i class="fas fa-check"></i> ✅ Completed';
+                    }
+                    const status = document.getElementById('stepStatus' + step);
+                    if (status) {
+                        status.textContent = 'Completed';
+                        status.className = 'step-status completed';
                     }
                 }
             });
@@ -167,12 +209,18 @@ function loadProgress() {
 function resetProgress() {
     if (confirm('Are you sure you want to reset all progress?')) {
         completedSteps.clear();
-        document.querySelectorAll('.step-card').forEach(card => {
+        document.querySelectorAll('.step-card.premium').forEach(card => {
             card.classList.remove('completed');
-            const btn = card.querySelector('.step-complete');
+            const btn = card.querySelector('.step-complete.premium');
             if (btn) {
                 btn.classList.remove('completed');
                 btn.innerHTML = '<i class="fas fa-check"></i> Mark as Completed';
+            }
+            const stepNum = card.dataset.step;
+            const status = document.getElementById('stepStatus' + stepNum);
+            if (status) {
+                status.textContent = 'Pending';
+                status.className = 'step-status pending';
             }
         });
         saveProgress();
@@ -209,7 +257,7 @@ function showMethodDetail(method) {
                     <li>3. Use Git for version control</li>
                     <li>4. Deploy on platforms like Vercel</li>
                 </ul>
-                <div style="margin-top:12px;padding:12px;background:rgba(255,45,85,0.1);border-radius:8px;">
+                <div style="margin-top:12px;padding:16px;background:var(--bg-card);border-radius:var(--radius-sm);border-left:4px solid var(--primary);">
                     <strong>💡 Best for:</strong> Developers who want full control
                 </div>
             `
@@ -221,10 +269,10 @@ function showMethodDetail(method) {
                 <p>Perfect for beginners or rapid prototyping.</p>
                 <h4>Tools you can use:</h4>
                 <ul>
-                    <li>Bubble - Complex web apps</li>
-                    <li>Glide - Mobile apps from spreadsheets</li>
-                    <li>Adalo - Mobile app builder</li>
-                    <li>Webflow - Professional websites</li>
+                    <li><strong>Bubble</strong> - Complex web apps</li>
+                    <li><strong>Glide</strong> - Mobile apps from spreadsheets</li>
+                    <li><strong>Adalo</strong> - Mobile app builder</li>
+                    <li><strong>Webflow</strong> - Professional websites</li>
                 </ul>
                 <h4>Steps:</h4>
                 <ul>
@@ -233,7 +281,7 @@ function showMethodDetail(method) {
                     <li>3. Configure workflows and logic</li>
                     <li>4. Publish your app</li>
                 </ul>
-                <div style="margin-top:12px;padding:12px;background:rgba(45,85,255,0.1);border-radius:8px;">
+                <div style="margin-top:12px;padding:16px;background:var(--bg-card);border-radius:var(--radius-sm);border-left:4px solid var(--secondary);">
                     <strong>💡 Best for:</strong> Non-developers, quick MVPs
                 </div>
             `
@@ -245,10 +293,10 @@ function showMethodDetail(method) {
                 <p>Leverage AI to generate code and assist development.</p>
                 <h4>AI Tools:</h4>
                 <ul>
-                    <li>GitHub Copilot - AI pair programmer</li>
-                    <li>ChatGPT - Get code suggestions</li>
-                    <li>Claude AI - Code generation</li>
-                    <li>Bolt.new - AI-powered development</li>
+                    <li><strong>GitHub Copilot</strong> - AI pair programmer</li>
+                    <li><strong>ChatGPT</strong> - Get code suggestions</li>
+                    <li><strong>Claude AI</strong> - Code generation</li>
+                    <li><strong>Bolt.new</strong> - AI-powered development</li>
                 </ul>
                 <h4>How it works:</h4>
                 <ul>
@@ -257,7 +305,7 @@ function showMethodDetail(method) {
                     <li>3. Review and modify the code</li>
                     <li>4. Test and deploy</li>
                 </ul>
-                <div style="margin-top:12px;padding:12px;background:rgba(255,45,85,0.1);border-radius:8px;">
+                <div style="margin-top:12px;padding:16px;background:var(--bg-card);border-radius:var(--radius-sm);border-left:4px solid #9C27B0;">
                     <strong>💡 Best for:</strong> Developers who want to be more productive
                 </div>
             `
@@ -281,7 +329,7 @@ function showMethodDetail(method) {
                     <li>3. Add custom code for unique features</li>
                     <li>4. Use AI for testing and debugging</li>
                 </ul>
-                <div style="margin-top:12px;padding:12px;background:rgba(45,85,255,0.1);border-radius:8px;">
+                <div style="margin-top:12px;padding:16px;background:var(--bg-card);border-radius:var(--radius-sm);border-left:4px solid #FF9800;">
                     <strong>💡 Best for:</strong> Teams with diverse skills
                 </div>
             `
@@ -465,7 +513,7 @@ function shareAchievement() {
 // HEART RAIN
 // ============================================
 function startHeartRain(count = 30) {
-    const emojis = ['❤️', '🎉', '⭐', '🌟', '🎊', '💪', '🚀', '🏆'];
+    const emojis = ['❤️', '🎉', '⭐', '🌟', '🎊', '💪', '🚀', '🏆', '💖', '✨'];
     for (let i = 0; i < count; i++) {
         setTimeout(() => {
             const heart = document.createElement('div');
@@ -520,5 +568,6 @@ document.addEventListener('keydown', (e) => {
 // ============================================
 // AUTO INIT
 // ============================================
-console.log('🤖 AI Se App Kaise Banaye - Guide v3.0');
-console.log('📚 Helping you learn app development!');
+console.log('🤖 AI Se App Kaise Banaye - Premium v3.0');
+console.log('📚 Learn app development the easy way!');
+console.log('💡 Made with ❤️ by AI Builder Team');
