@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>🤖 AI Se App Kaise Banaye - Learn App Development</title>
+    <title>🤖 AI Se App Kaise Banaye</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -41,7 +41,7 @@
     <div id="mainApp" class="main-app" style="display:none;">
 
         <!-- ===== HEADER ===== -->
-        <header class="app-header glass">
+        <header class="app-header">
             <div class="header-left">
                 <button class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
@@ -49,25 +49,27 @@
                 <div class="logo">
                     <span class="logo-icon">🤖</span>
                     <span class="logo-text">AI Guide</span>
+                    <span class="logo-badge">Pro</span>
                 </div>
             </div>
             <div class="header-right">
-                <button class="theme-toggle" id="themeToggle">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="notification-btn" onclick="showToast('📚 New tutorials added!')">
+                <button class="notification-btn" onclick="showToast('📚 3 new tutorials added!')">
                     <i class="fas fa-bell"></i>
                     <span class="badge">3</span>
                 </button>
-                <div class="user-avatar" onclick="showToast('👤 Welcome back, Learner!')">
+                <div class="user-avatar" onclick="navigateTo('progress')">
                     <img src="https://ui-avatars.com/api/?name=Learner&background=FF2D55&color=fff&size=40&bold=true" alt="User" />
+                    <span class="online-dot"></span>
                 </div>
             </div>
         </header>
 
         <!-- ===== SIDEBAR ===== -->
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
-        <div class="sidebar glass" id="sidebar">
+        <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
                     <span class="logo-icon">🤖</span>
@@ -78,14 +80,13 @@
                 </button>
             </div>
             <div class="sidebar-user">
-                <div class="avatar-wrapper">
-                    <img src="https://ui-avatars.com/api/?name=Learner&background=FF2D55&color=fff&size=80&bold=true" alt="User" />
-                </div>
+                <img src="https://ui-avatars.com/api/?name=Learner&background=FF2D55&color=fff&size=80&bold=true" alt="User" />
                 <h4>Hello, Learner!</h4>
                 <p>🚀 Keep learning, keep growing!</p>
                 <div class="mini-progress">
                     <div class="mini-progress-bar" id="sidebarProgress" style="width:0%"></div>
                 </div>
+                <span class="progress-text" id="sidebarProgressText">0% Complete</span>
             </div>
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item active" data-page="home">
@@ -113,7 +114,7 @@
             <div class="sidebar-footer">
                 <button class="reset-btn" onclick="resetAllProgress()">
                     <i class="fas fa-redo"></i>
-                    <span>Reset All</span>
+                    <span>Reset Progress</span>
                 </button>
             </div>
         </div>
@@ -123,7 +124,7 @@
 
             <!-- ===== PAGE: HOME ===== -->
             <section id="page-home" class="page active">
-                <!-- Hero -->
+                <!-- Hero Banner -->
                 <div class="hero-banner">
                     <div class="hero-content">
                         <div class="hero-tag">🚀 2024 Edition</div>
@@ -147,22 +148,22 @@
                 </div>
 
                 <!-- Stats -->
-                <div class="stats-grid premium">
-                    <div class="stat-card premium" onclick="navigateTo('learn')">
+                <div class="stats-grid">
+                    <div class="stat-card" onclick="navigateTo('learn')">
                         <div class="stat-icon">📚</div>
                         <div class="stat-info">
-                            <h3 id="totalTutorials">12</h3>
+                            <h3 id="totalTutorials">0</h3>
                             <p>Tutorials</p>
                         </div>
                     </div>
-                    <div class="stat-card premium" onclick="navigateTo('progress')">
+                    <div class="stat-card" onclick="navigateTo('progress')">
                         <div class="stat-icon">✅</div>
                         <div class="stat-info">
-                            <h3 id="completedTutorials">0</h3>
+                            <h3 id="completedSteps">0</h3>
                             <p>Completed</p>
                         </div>
                     </div>
-                    <div class="stat-card premium" onclick="showToast('🏆 You\'re doing great!')">
+                    <div class="stat-card" onclick="navigateTo('progress')">
                         <div class="stat-icon">🏆</div>
                         <div class="stat-info">
                             <h3 id="progressPercent">0%</h3>
@@ -172,11 +173,11 @@
                 </div>
 
                 <!-- Quick Categories -->
-                <div class="section-header premium">
+                <div class="section-header">
                     <h3>⚡ Quick Start</h3>
                 </div>
-                <div class="quick-steps premium">
-                    <div class="qs-step premium" onclick="filterTutorials('all')">
+                <div class="quick-steps">
+                    <div class="qs-step" onclick="filterTutorials('all')">
                         <span class="qs-number">📚</span>
                         <div class="qs-content">
                             <h4>All Tutorials</h4>
@@ -184,7 +185,7 @@
                         </div>
                         <i class="fas fa-chevron-right"></i>
                     </div>
-                    <div class="qs-step premium" onclick="filterTutorials('beginner')">
+                    <div class="qs-step" onclick="filterTutorials('beginner')">
                         <span class="qs-number">🌱</span>
                         <div class="qs-content">
                             <h4>Beginner</h4>
@@ -192,7 +193,7 @@
                         </div>
                         <i class="fas fa-chevron-right"></i>
                     </div>
-                    <div class="qs-step premium" onclick="filterTutorials('intermediate')">
+                    <div class="qs-step" onclick="filterTutorials('intermediate')">
                         <span class="qs-number">🚀</span>
                         <div class="qs-content">
                             <h4>Intermediate</h4>
@@ -200,7 +201,7 @@
                         </div>
                         <i class="fas fa-chevron-right"></i>
                     </div>
-                    <div class="qs-step premium" onclick="filterTutorials('advanced')">
+                    <div class="qs-step" onclick="filterTutorials('advanced')">
                         <span class="qs-number">🏆</span>
                         <div class="qs-content">
                             <h4>Advanced</h4>
@@ -211,25 +212,25 @@
                 </div>
 
                 <!-- Featured Tutorials -->
-                <div class="section-header premium">
+                <div class="section-header">
                     <h3>🔥 Popular Tutorials</h3>
                     <span class="view-all" onclick="navigateTo('learn')">View All →</span>
                 </div>
                 <div class="featured-grid" id="featuredGrid">
-                    <!-- Will be populated by JavaScript -->
+                    <!-- Populated by JavaScript -->
                 </div>
             </section>
 
             <!-- ===== PAGE: LEARN ===== -->
             <section id="page-learn" class="page">
-                <div class="page-header premium">
+                <div class="page-header">
                     <h2>📚 All Tutorials</h2>
                     <p>Choose your learning path</p>
                 </div>
 
                 <!-- Search & Filter -->
                 <div class="search-filter">
-                    <div class="search-box premium">
+                    <div class="search-box">
                         <i class="fas fa-search"></i>
                         <input type="text" id="searchInput" placeholder="Search tutorials..." oninput="searchTutorials()" />
                         <button class="search-clear" onclick="clearSearch()">
@@ -245,8 +246,8 @@
                 </div>
 
                 <!-- Tutorial Grid -->
-                <div class="tutorial-grid premium" id="tutorialGrid">
-                    <!-- Will be populated by JavaScript -->
+                <div class="tutorial-grid" id="tutorialGrid">
+                    <!-- Populated by JavaScript -->
                 </div>
             </section>
 
@@ -257,28 +258,28 @@
                         <i class="fas fa-arrow-left"></i> Back
                     </button>
                     <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark()">
-                        <i class="fas fa-bookmark"></i>
+                        <i class="far fa-bookmark"></i>
                     </button>
                 </div>
                 <div id="tutorialDetail">
-                    <!-- Will be populated by JavaScript -->
+                    <!-- Populated by JavaScript -->
                 </div>
             </section>
 
             <!-- ===== PAGE: BOOKMARKS ===== -->
             <section id="page-bookmarks" class="page">
-                <div class="page-header premium">
+                <div class="page-header">
                     <h2>📑 Bookmarks</h2>
                     <p>Your saved tutorials</p>
                 </div>
                 <div class="bookmarks-grid" id="bookmarksGrid">
-                    <!-- Will be populated by JavaScript -->
+                    <!-- Populated by JavaScript -->
                 </div>
             </section>
 
             <!-- ===== PAGE: PROGRESS ===== -->
             <section id="page-progress" class="page">
-                <div class="page-header premium">
+                <div class="page-header">
                     <h2>📊 Your Progress</h2>
                     <p>Track your learning journey</p>
                 </div>
@@ -297,8 +298,8 @@
                             <span class="stat-label">Completed</span>
                         </div>
                         <div class="progress-stat">
-                            <span class="stat-value" id="statTotal">12</span>
-                            <span class="stat-label">Total</span>
+                            <span class="stat-value" id="statTotal">0</span>
+                            <span class="stat-label">Total Steps</span>
                         </div>
                         <div class="progress-stat">
                             <span class="stat-value" id="statStreak">🔥 0</span>
@@ -307,23 +308,23 @@
                     </div>
                 </div>
 
-                <div class="section-header premium">
-                    <h3>📋 Completed Tutorials</h3>
+                <div class="section-header">
+                    <h3>📋 Completed Steps</h3>
                 </div>
                 <div class="completed-list" id="completedList">
-                    <!-- Will be populated by JavaScript -->
+                    <!-- Populated by JavaScript -->
                 </div>
             </section>
 
             <!-- ===== PAGE: SETTINGS ===== -->
             <section id="page-settings" class="page">
-                <div class="page-header premium">
+                <div class="page-header">
                     <h2>⚙️ Settings</h2>
                     <p>Customize your experience</p>
                 </div>
 
-                <div class="settings-list premium">
-                    <div class="setting-item premium">
+                <div class="settings-list">
+                    <div class="setting-item">
                         <div class="setting-icon">🌓</div>
                         <div class="setting-info">
                             <h4>Dark Mode</h4>
@@ -335,7 +336,7 @@
                         </label>
                     </div>
 
-                    <div class="setting-item premium">
+                    <div class="setting-item">
                         <div class="setting-icon">🔊</div>
                         <div class="setting-info">
                             <h4>Sound Effects</h4>
@@ -347,7 +348,7 @@
                         </label>
                     </div>
 
-                    <div class="setting-item premium">
+                    <div class="setting-item">
                         <div class="setting-icon">📱</div>
                         <div class="setting-info">
                             <h4>Auto-Play Videos</h4>
@@ -359,7 +360,7 @@
                         </label>
                     </div>
 
-                    <div class="setting-item premium">
+                    <div class="setting-item">
                         <div class="setting-icon">💾</div>
                         <div class="setting-info">
                             <h4>Storage</h4>
@@ -368,7 +369,7 @@
                         <button class="setting-action" onclick="clearCache()">Clear</button>
                     </div>
 
-                    <div class="setting-item premium">
+                    <div class="setting-item">
                         <div class="setting-icon">ℹ️</div>
                         <div class="setting-info">
                             <h4>About</h4>
@@ -382,38 +383,38 @@
         </main>
 
         <!-- ===== BOTTOM NAVIGATION ===== -->
-        <nav class="bottom-nav premium glass">
-            <button class="nav-btn premium active" data-page="home">
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="home">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </button>
-            <button class="nav-btn premium" data-page="learn">
+            <button class="nav-btn" data-page="learn">
                 <i class="fas fa-graduation-cap"></i>
                 <span>Learn</span>
             </button>
-            <button class="nav-btn premium" data-page="bookmarks">
+            <button class="nav-btn" data-page="bookmarks">
                 <i class="fas fa-bookmark"></i>
                 <span>Saved</span>
             </button>
-            <button class="nav-btn premium" data-page="progress">
+            <button class="nav-btn" data-page="progress">
                 <i class="fas fa-chart-line"></i>
                 <span>Progress</span>
             </button>
-            <button class="nav-btn premium" data-page="settings">
+            <button class="nav-btn" data-page="settings">
                 <i class="fas fa-cog"></i>
                 <span>Settings</span>
             </button>
         </nav>
 
         <!-- ===== FLOATING ACTION BUTTON ===== -->
-        <button class="fab premium" onclick="showToast('🤖 AI Assistant: How can I help you?')">
+        <button class="fab" onclick="showToast('🤖 AI Assistant: How can I help you?')">
             <i class="fas fa-robot"></i>
         </button>
 
     </div>
 
     <!-- ===== TOAST ===== -->
-    <div class="toast premium" id="toast"></div>
+    <div class="toast" id="toast"></div>
 
     <!-- ===== TUTORIAL DATA ===== -->
     <script src="data/tutorials.js"></script>
