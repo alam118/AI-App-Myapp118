@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>🤖 AI Se App Kaise Banaye</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- ===== SPLASH SCREEN ===== -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <i class="fas fa-robot"></i>
+            </div>
+            <h1>AI Se App <span>Kaise Banaye</span></h1>
+            <p>🤖 Learn AI App Development</p>
+            <div class="splash-loader">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="splash-version">v2.0 | Made with ❤️</div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN APP ===== -->
+    <div id="mainApp" class="main-app" style="display:none;">
+
+        <!-- ===== HEADER ===== -->
+        <header class="app-header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Builder</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="user-avatar" id="userAvatar">
+                    <img src="https://ui-avatars.com/api/?name=User&background=FF2D55&color=fff&size=32" alt="User" />
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== SIDEBAR ===== -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Builder</span>
+                </div>
+                <button class="sidebar-close" id="sidebarClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="sidebar-user">
+                <img src="https://ui-avatars.com/api/?name=User&background=FF2D55&color=fff&size=60" alt="User" />
+                <h4>Welcome Back!</h4>
+                <p>user@example.com</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-item" data-page="tutorials">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Tutorials</span>
+                    <span class="nav-badge">12</span>
+                </a>
+                <a href="#" class="nav-item" data-page="tools">
+                    <i class="fas fa-tools"></i>
+                    <span>AI Tools</span>
+                </a>
+                <a href="#" class="nav-item" data-page="community">
+                    <i class="fas fa-users"></i>
+                    <span>Community</span>
+                    <span class="nav-badge">New</span>
+                </a>
+                <a href="#" class="nav-item" data-page="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="main-content" id="mainContent">
+
+            <!-- ===== PAGE: HOME ===== -->
+            <section id="page-home" class="page active">
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <div class="banner-content">
+                        <h2>👋 Welcome, <span id="userName">Developer</span>!</h2>
+                        <p>Learn to build apps with AI in 2024</p>
+                    </div>
+                    <div class="banner-emoji">🤖</div>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-book"></i>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Tutorials</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-video"></i>
+                        <div class="stat-info">
+                            <h3>18</h3>
+                            <p>Videos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3>2.4K</h3>
+                            <p>Community</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-rocket"></i>
+                        <div class="stat-info">
+                            <h3>120</h3>
+                            <p>Projects</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="section-header">
+                    <h3>🚀 Quick Actions</h3>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="quick-actions">
+                    <button class="action-btn" onclick="showToast('📝 Starting new project...')">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>New Project</span>
+                    </button>
+                    <button class="action-btn" onclick="showToast('📚 Opening tutorials...')">
+                        <i class="fas fa-book-open"></i>
+                        <span>Start Learning</span>
+                    </button>
+                    <button class="action-btn" onclick="showToast('🤖 Launching AI Assistant...')">
+                        <i class="fas fa-robot"></i>
+                        <span>AI Assistant</span>
+                    </button>
+                    <button class="action-btn" onclick="showToast('👥 Opening community...')">
+                        <i class="fas fa-users"></i>
+                        <span>Community</span>
+                    </button>
+                </div>
+
+                <!-- Trending Tutorials -->
+                <div class="section-header">
+                    <h3>🔥 Trending Tutorials</h3>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="tutorial-list">
+                    <div class="tutorial-item">
+                        <div class="tutorial-icon">📱</div>
+                        <div class="tutorial-info">
+                            <h4>Build a Chat App with AI</h4>
+                            <p>Learn to build WhatsApp-like app using AI</p>
+                            <span class="tutorial-meta">⭐ 4.8 • 2.3k students</span>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                    <div class="tutorial-item">
+                        <div class="tutorial-icon">🤖</div>
+                        <div class="tutorial-info">
+                            <h4>AI Image Generator</h4>
+                            <p>Create stunning images with DALL-E API</p>
+                            <span class="tutorial-meta">⭐ 4.9 • 1.8k students</span>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                    <div class="tutorial-item">
+                        <div class="tutorial-icon">💬</div>
+                        <div class="tutorial-info">
+                            <h4>Build a ChatGPT Clone</h4>
+                            <p>Create your own AI chatbot from scratch</p>
+                            <span class="tutorial-meta">⭐ 4.7 • 3.1k students</span>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+
+                <!-- AI Tips -->
+                <div class="ai-tips">
+                    <div class="tip-icon">💡</div>
+                    <div class="tip-content">
+                        <h4>AI Pro Tip</h4>
+                        <p>Use prompt engineering to get better responses from AI models. Try to be specific and provide context!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: TUTORIALS ===== -->
+            <section id="page-tutorials" class="page">
+                <div class="page-header">
+                    <h2>📚 Tutorials</h2>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search tutorials..." id="searchTutorials" />
+                    </div>
+                </div>
+
+                <div class="category-tabs">
+                    <button class="cat-tab active" data-cat="all">All</button>
+                    <button class="cat-tab" data-cat="beginner">Beginner</button>
+                    <button class="cat-tab" data-cat="intermediate">Intermediate</button>
+                    <button class="cat-tab" data-cat="advanced">Advanced</button>
+                </div>
+
+                <div class="tutorial-grid">
+                    <div class="tutorial-card" data-cat="beginner">
+                        <div class="tutorial-card-image">
+                            <img src="https://picsum.photos/400/200?random=1" alt="Tutorial" />
+                            <span class="tutorial-badge">Beginner</span>
+                            <span class="tutorial-duration">15 min</span>
+                        </div>
+                        <div class="tutorial-card-body">
+                            <h4>Introduction to AI App Development</h4>
+                            <p>Learn the basics of building apps with AI</p>
+                            <div class="tutorial-card-footer">
+                                <span>📺 12 lessons</span>
+                                <span>⭐ 4.8</span>
+                            </div>
+                            <button class="start-btn">Start Learning</button>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-card" data-cat="intermediate">
+                        <div class="tutorial-card-image">
+                            <img src="https://picsum.photos/400/200?random=2" alt="Tutorial" />
+                            <span class="tutorial-badge">Intermediate</span>
+                            <span class="tutorial-duration">30 min</span>
+                        </div>
+                        <div class="tutorial-card-body">
+                            <h4>Build an AI-Powered Chatbot</h4>
+                            <p>Create intelligent chatbots using OpenAI API</p>
+                            <div class="tutorial-card-footer">
+                                <span>📺 20 lessons</span>
+                                <span>⭐ 4.9</span>
+                            </div>
+                            <button class="start-btn">Start Learning</button>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-card" data-cat="advanced">
+                        <div class="tutorial-card-image">
+                            <img src="https://picsum.photos/400/200?random=3" alt="Tutorial" />
+                            <span class="tutorial-badge">Advanced</span>
+                            <span class="tutorial-duration">45 min</span>
+                        </div>
+                        <div class="tutorial-card-body">
+                            <h4>AI Image Recognition App</h4>
+                            <p>Build apps that can see and identify objects</p>
+                            <div class="tutorial-card-footer">
+                                <span>📺 25 lessons</span>
+                                <span>⭐ 4.7</span>
+                            </div>
+                            <button class="start-btn">Start Learning</button>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-card" data-cat="beginner">
+                        <div class="tutorial-card-image">
+                            <img src="https://picsum.photos/400/200?random=4" alt="Tutorial" />
+                            <span class="tutorial-badge">Beginner</span>
+                            <span class="tutorial-duration">10 min</span>
+                        </div>
+                        <div class="tutorial-card-body">
+                            <h4>Deploy AI Apps on Vercel</h4>
+                            <p>Learn to host your AI applications online</p>
+                            <div class="tutorial-card-footer">
+                                <span>📺 8 lessons</span>
+                                <span>⭐ 4.6</span>
+                            </div>
+                            <button class="start-btn">Start Learning</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: TOOLS ===== -->
+            <section id="page-tools" class="page">
+                <div class="page-header">
+                    <h2>🛠️ AI Tools</h2>
+                    <p>Essential tools for AI app development</p>
+                </div>
+
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">🤖</div>
+                        <h4>OpenAI API</h4>
+                        <p>GPT-4, DALL-E, and more</p>
+                        <button class="tool-btn">Explore</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">⚡</div>
+                        <h4>Vercel</h4>
+                        <p>Deploy AI apps instantly</p>
+                        <button class="tool-btn">Explore</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">📱</div>
+                        <h4>Flutter</h4>
+                        <p>Cross-platform AI apps</p>
+                        <button class="tool-btn">Explore</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🔗</div>
+                        <h4>LangChain</h4>
+                        <p>Build AI agents easily</p>
+                        <button class="tool-btn">Explore</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🎨</div>
+                        <h4>Stable Diffusion</h4>
+                        <p>Generate AI images</p>
+                        <button class="tool-btn">Explore</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">📊</div>
+                        <h4>Hugging Face</h4>
+                        <p>AI models library</p>
+                        <button class="tool-btn">Explore</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: COMMUNITY ===== -->
+            <section id="page-community" class="page">
+                <div class="page-header">
+                    <h2>👥 Community</h2>
+                    <p>Connect with fellow AI developers</p>
+                </div>
+
+                <div class="community-stats">
+                    <div class="comm-stat">
+                        <i class="fas fa-users"></i>
+                        <span>2,456 Members</span>
+                    </div>
+                    <div class="comm-stat">
+                        <i class="fas fa-comments"></i>
+                        <span>189 Online</span>
+                    </div>
+                    <div class="comm-stat">
+                        <i class="fas fa-rocket"></i>
+                        <span>34 Projects</span>
+                    </div>
+                </div>
+
+                <div class="community-posts">
+                    <div class="post-card">
+                        <div class="post-header">
+                            <img src="https://ui-avatars.com/api/?name=John&background=2D55FF&color=fff" alt="User" />
+                            <div class="post-user">
+                                <h4>John Doe</h4>
+                                <span>2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>🎉 Just built my first AI chatbot! Thanks to this community for the amazing tutorials.</p>
+                            <div class="post-actions">
+                                <button><i class="fas fa-heart"></i> 24</button>
+                                <button><i class="fas fa-comment"></i> 7</button>
+                                <button><i class="fas fa-share"></i> 3</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-header">
+                            <img src="https://ui-avatars.com/api/?name=Sarah&background=FF2D55&color=fff" alt="User" />
+                            <div class="post-user">
+                                <h4>Sarah Chen</h4>
+                                <span>5 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>🌟 Looking for beta testers for my new AI image generator app. DM me if interested!</p>
+                            <div class="post-actions">
+                                <button><i class="fas fa-heart"></i> 18</button>
+                                <button><i class="fas fa-comment"></i> 12</button>
+                                <button><i class="fas fa-share"></i> 5</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: PROFILE ===== -->
+            <section id="page-profile" class="page">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="https://ui-avatars.com/api/?name=User&background=FF2D55&color=fff&size=100" alt="User" />
+                        <button class="edit-avatar"><i class="fas fa-camera"></i></button>
+                    </div>
+                    <h2>User</h2>
+                    <p>user@example.com</p>
+                    <div class="profile-stats">
+                        <div class="p-stat">
+                            <span>24</span>
+                            <p>Courses</p>
+                        </div>
+                        <div class="p-stat">
+                            <span>12</span>
+                            <p>Projects</p>
+                        </div>
+                        <div class="p-stat">
+                            <span>4.8</span>
+                            <p>Rating</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-menu">
+                    <button class="profile-menu-item active">
+                        <i class="fas fa-user"></i>
+                        <span>Personal Info</span>
+                    </button>
+                    <button class="profile-menu-item">
+                        <i class="fas fa-book"></i>
+                        <span>My Courses</span>
+                        <span class="badge">12</span>
+                    </button>
+                    <button class="profile-menu-item">
+                        <i class="fas fa-code"></i>
+                        <span>My Projects</span>
+                        <span class="badge">8</span>
+                    </button>
+                    <button class="profile-menu-item">
+                        <i class="fas fa-crown"></i>
+                        <span>Achievements</span>
+                        <span class="badge">5</span>
+                    </button>
+                    <button class="profile-menu-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: SETTINGS ===== -->
+            <section id="page-settings" class="page">
+                <div class="page-header">
+                    <h2>⚙️ Settings</h2>
+                    <p>Customize your app experience</p>
+                </div>
+
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-icon"><i class="fas fa-moon"></i></div>
+                        <div class="setting-info">
+                            <h4>Dark Mode</h4>
+                            <p>Toggle dark/light theme</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="darkModeToggle" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-icon"><i class="fas fa-bell"></i></div>
+                        <div class="setting-info">
+                            <h4>Notifications</h4>
+                            <p>Receive app notifications</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-icon"><i class="fas fa-volume-up"></i></div>
+                        <div class="setting-info">
+                            <h4>Sound Effects</h4>
+                            <p>Play sounds on interactions</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked id="soundToggle" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-icon"><i class="fas fa-globe"></i></div>
+                        <div class="setting-info">
+                            <h4>Language</h4>
+                            <p>English (US)</p>
+                        </div>
+                        <button class="setting-btn">Change</button>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-icon"><i class="fas fa-database"></i></div>
+                        <div class="setting-info">
+                            <h4>Clear Cache</h4>
+                            <p>Clear all cached data</p>
+                        </div>
+                        <button class="setting-btn danger" onclick="showToast('🗑️ Cache cleared!')">Clear</button>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-icon"><i class="fas fa-info-circle"></i></div>
+                        <div class="setting-info">
+                            <h4>About</h4>
+                            <p>Version 2.0.0</p>
+                        </div>
+                        <button class="setting-btn" onclick="showToast('🤖 AI Se App Kaise Banaye v2.0')">Info</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ===== BOTTOM NAVIGATION ===== -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-btn" data-page="tutorials">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Learn</span>
+            </button>
+            <button class="nav-btn" data-page="tools">
+                <i class="fas fa-tools"></i>
+                <span>Tools</span>
+            </button>
+            <button class="nav-btn" data-page="community">
+                <i class="fas fa-users"></i>
+                <span>Community</span>
+            </button>
+            <button class="nav-btn" data-page="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+        </nav>
+
+        <!-- ===== FLOATING ACTION BUTTON ===== -->
+        <button class="fab" id="fab" onclick="showToast('🤖 AI Assistant is here!')">
+            <i class="fas fa-robot"></i>
+        </button>
+
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
